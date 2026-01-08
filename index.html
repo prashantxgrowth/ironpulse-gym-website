@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IRONPULSE GYM</title>
+
+<!-- ================= GOOGLE FONT ================= -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =================================================
+   GLOBAL
+================================================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#0e0e0e;
+  color:#ffffff;
+  overflow-x:hidden;
+}
+
+/* =================================================
+   HERO SECTION
+================================================= */
+.hero{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+
+.slider{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:scale(1.05);
+  transition:opacity 1s ease, transform 1.2s ease;
+}
+
+.slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  z-index:2;
+}
+
+.brand{
+  position:absolute;
+  top:30px;
+  left:40px;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:2px;
+  z-index:5;
+}
+
+.hero-content{
+  position:relative;
+  z-index:5;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:56px;
+  font-weight:700;
+}
+
+.hero p{
+  max-width:650px;
+  margin:20px 0 35px;
+  font-size:18px;
+  opacity:0.85;
+}
+
+.hero button{
+  padding:14px 40px;
+  font-size:16px;
+  font-weight:600;
+  border:none;
+  border-radius:30px;
+  background:#ff3d00;
+  color:#fff;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.hero button:hover{
+  background:#ffffff;
+  color:#000000;
+  transform:translateY(-4px);
+}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  color:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  transition:.3s ease;
+  z-index:6;
+}
+
+.slider-btn:hover{background:#ff3d00;}
+.prev{left:30px;}
+.next{right:30px;}
+
+@media(max-width:768px){
+  .hero h1{font-size:40px;}
+  .brand{left:20px;font-size:22px;}
+}
+
+/* =================================================
+   WELCOME SECTION
+================================================= */
+.welcome-section{
+  width:100%;
+  background:#ffffff;
+  color:#222222;
+  padding:100px 20px;
+  text-align:center;
+}
+
+.welcome-title{
+  font-size:38px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.welcome-title::after{
+  content:"";
+  width:60px;
+  height:4px;
+  background:#ff3d00;
+  display:block;
+  margin:12px auto 0;
+  border-radius:2px;
+}
+
+.welcome-text{
+  max-width:800px;
+  margin:25px auto 40px;
+  font-size:17px;
+  line-height:1.8;
+}
+
+.read-more-btn{
+  padding:14px 36px;
+  font-size:15px;
+  font-weight:600;
+  border-radius:30px;
+  border:2px solid #ff3d00;
+  background:transparent;
+  color:#ff3d00;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.read-more-btn:hover{
+  background:#ff3d00;
+  color:#ffffff;
+  transform:translateY(-6px);
+}
+
+/* =================================================
+   INFO SECTION
+================================================= */
+.info-section{
+  display:flex;
+  width:100%;
+  min-height:320px;
+}
+
+.info-box{
+  flex:1;
+  padding:60px 40px;
+  text-align:center;
+  color:#ffffff;
+}
+
+.info-box.blue{background:#4169a6;}
+.info-box.dark{background:#1c1c1c;}
+
+.info-box .icon{
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.info-box h3{
+  font-size:22px;
+  margin:15px 0;
+}
+
+.info-box p{
+  font-size:15px;
+  line-height:1.6;
+  opacity:.9;
+}
+
+@media(max-width:768px){
+  .info-section{flex-direction:column;}
+}
+
+/* =================================================
+   SERVICES SECTION
+================================================= */
+.services-section{
+  background:#f7f7f7;
+  padding:100px 20px;
+  text-align:center;
+}
+
+.services-title{
+  font-size:38px;
+  font-weight:700;
+  color:#111111;
+}
+
+.services-title::after{
+  content:"";
+  width:60px;
+  height:4px;
+  background:#ff3d00;
+  display:block;
+  margin:12px auto 0;
+}
+
+.services-subtitle{
+  max-width:700px;
+  margin:20px auto 60px;
+  font-size:16px;
+  color:#555555;
+}
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.service-card{
+  background:#ffffff;
+  padding:30px 20px;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.service-icon{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:2px solid #4a6fa5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#4a6fa5;
+}
+
+.service-card:hover .service-icon{
+  background:#4a6fa5;
+  color:#ffffff;
+}
+
+.service-card h4{
+  font-size:16px;
+  color:#1a1a1a;
+}
+
+@media(max-width:900px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr;}
+}
+
+/* =================================================
+   STATS / COUNTER SECTION
+================================================= */
+.stats-section{
+  background:#4169a6;
+  padding:90px 20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+  text-align:center;
+}
+
+.stat-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+
+.stat-icon{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+}
+
+.stat-box h2{
+  font-size:48px;
+  font-weight:700;
+}
+
+.stat-box h2::after{
+  content:"+";
+}
+
+.stat-box p{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  opacity:0.9;
+}
+
+@media(max-width:900px){
+  .stats-section{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:500px){
+  .stats-section{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="brand">IRONPULSE</div>
+
+  <div class="slider">
+    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1558611848-73f7eb4001a1');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07c');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1517964603305-11c0f6f66012');"></div>
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1>Transform Your Body</h1>
+    <p>Build strength, discipline, and confidence with professional training programs designed for real results.</p>
+    <button>Get Started</button>
+  </div>
+
+  <div class="slider-btn prev">&#10094;</div>
+  <div class="slider-btn next">&#10095;</div>
+</section>
+
+<!-- WELCOME -->
+<section class="welcome-section">
+  <h2 class="welcome-title">Welcome To IRONPULSE GYM</h2>
+  <p class="welcome-text">
+    At IronPulse Gym, we focus on real transformation. Strength training, fat loss,
+    muscle building, and disciplined lifestyle coaching designed for lasting results.
+  </p>
+  <button class="read-more-btn">Read More</button>
+</section>
+
+<!-- INFO -->
+<section class="info-section">
+  <div class="info-box blue">
+    <div class="icon">↻</div>
+    <h3>Our Story</h3>
+    <p>IronPulse Gym was built to create real, disciplined transformation.</p>
+  </div>
+  <div class="info-box dark">
+    <div class="icon">◎</div>
+    <h3>Our Mission</h3>
+    <p>Deliver result-driven strength, fat loss, and long-term health programs.</p>
+  </div>
+  <div class="info-box blue">
+    <div class="icon">👁</div>
+    <h3>Our Vision</h3>
+    <p>Build a fitness culture based on consistency, discipline, and performance.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <h2 class="services-title">Our Services</h2>
+  <p class="services-subtitle">
+    We offer structured, result-driven fitness services designed to build strength,
+    improve endurance, and transform your lifestyle.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">S</div><h4>Strength Training</h4></div>
+    <div class="service-card"><div class="service-icon">F</div><h4>Fat Loss Programs</h4></div>
+    <div class="service-card"><div class="service-icon">M</div><h4>Muscle Building</h4></div>
+    <div class="service-card"><div class="service-icon">P</div><h4>Personal Training</h4></div>
+    <div class="service-card"><div class="service-icon">N</div><h4>Nutrition Guidance</h4></div>
+    <div class="service-card"><div class="service-icon">G</div><h4>Group Training</h4></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stat-box">
+    <div class="stat-icon">📅</div>
+    <h2 class="counter" data-target="12">0</h2>
+    <p>Years of Experience</p>
+  </div>
+  <div class="stat-box">
+    <div class="stat-icon">✅</div>
+    <h2 class="counter" data-target="999">0</h2>
+    <p>Successful Transformations</p>
+  </div>
+  <div class="stat-box">
+    <div class="stat-icon">👥</div>
+    <h2 class="counter" data-target="480">0</h2>
+    <p>Total Members</p>
+  </div>
+  <div class="stat-box">
+    <div class="stat-icon">❤️</div>
+    <h2 class="counter" data-target="15">0</h2>
+    <p>Awards Won</p>
+  </div>
+</section>
+
+<section class="portfolio-section" id="portfolio">
+  <div class="container">
+    <h2 class="section-title">Our Gym Portfolio</h2>
+    <p class="section-subtitle">
+      Professional training environment, real transformations, and premium gym infrastructure.
+    </p>
+
+    <div class="portfolio-filters">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="training">TRAINING</button>
+      <button class="filter-btn" data-filter="transformation">TRANSFORMATION</button>
+      <button class="filter-btn" data-filter="equipment">EQUIPMENT</button>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-item training">
+        <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74" alt="Personal training session">
+        <div class="overlay">
+          <h3>Personal Training</h3>
+          <span>Strength Focus</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item equipment">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=80" alt="Modern gym equipment">
+        <div class="overlay">
+          <h3>Modern Equipment</h3>
+          <span>Advanced Machines</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item training">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" alt="Group workout">
+        <div class="overlay">
+          <h3>Group Workout</h3>
+          <span>High Energy</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item transformation">
+        <img src="https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?auto=format&fit=crop&w=1200&q=80" alt="Strength training session">
+        <div class="overlay">
+          <h3>Body Transformation</h3>
+          <span>Real Results</span>
+        </div>
+      </div>
+      <div class="portfolio-item transformation">
+        <img src="https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?auto=format&fit=crop&w=1200&q=80" alt="Strength training session">
+        <div class="overlay">
+          <h3>Free Weights Zone</h3>
+          <span>Heavy Lifting</span>
+        </div>
+      </div>
+      <div class="portfolio-item transformation">
+        <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1" alt="Body transformation">
+        <div class="overlay">
+          <h3>Strength Training</h3>
+          <span>Power & Endurance</span>
+        </div>
+      </div>
+
+      
+
+      <div class="portfolio-item equipment">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Gym interior">
+        <div class="overlay">
+          <h3>Gym Interior</h3>
+          <span>Clean & Motivating</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item transformation">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="Fitness progress">
+ alt="Fitness progress">
+        <div class="overlay">
+          <h3>Fitness Progress</h3>
+          <span>Confidence Boost</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p class="footer-name">@prashantxgrowth</p>
+
+    <div class="footer-social">
+      <a href="https://www.instagram.com/prashantxgrowth" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.behance.net/prashantxgrowth" target="_blank" aria-label="Behance">
+        <i class="fab fa-behance"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Font Awesome CDN (icons ke liye – head ke end me ya body ke end me) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+
+  /* HERO SLIDER */
+  const slides=document.querySelectorAll(".slide");
+  const next=document.querySelector(".next");
+  const prev=document.querySelector(".prev");
+  let index=0;
+
+  function showSlide(i){
+    slides.forEach(s=>s.classList.remove("active"));
+    slides[i].classList.add("active");
+  }
+
+  next.addEventListener("click",()=>{
+    index=(index+1)%slides.length;
+    showSlide(index);
+  });
+
+  prev.addEventListener("click",()=>{
+    index=(index-1+slides.length)%slides.length;
+    showSlide(index);
+  });
+
+  setInterval(()=>{
+    index=(index+1)%slides.length;
+    showSlide(index);
+  },5000);
+
+  /* COUNTER ANIMATION */
+  const counters=document.querySelectorAll(".counter");
+  let started=false;
+
+  function startCounter(){
+    if(started) return;
+    started=true;
+
+    counters.forEach(counter=>{
+      const target=+counter.dataset.target;
+      let count=0;
+      const step=target/100;
+
+      function update(){
+        if(count<target){
+          count+=step;
+          counter.innerText=Math.ceil(count);
+          requestAnimationFrame(update);
+        }else{
+          counter.innerText=target;
+        }
+      }
+      update();
+    });
+  }
+
+  window.addEventListener("scroll",()=>{
+    const section=document.querySelector(".stats-section");
+    if(section.getBoundingClientRect().top < window.innerHeight-100){
+      startCounter();
+    }
+  });
+
+});
+</script>
+
+</body>
+</html>
